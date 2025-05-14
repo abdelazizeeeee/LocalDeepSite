@@ -3,7 +3,7 @@
 FROM node:22.1.0
 USER root
 
-RUN apt-get update
+RUN apt-get update && apt-get install -y libstdc++6
 USER 1000
 WORKDIR /usr/src/app
 # Copy package.json and package-lock.json to the container
