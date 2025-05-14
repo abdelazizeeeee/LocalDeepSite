@@ -86,7 +86,7 @@ function AskAI({
         const read = async () => {
           const { done, value } = await reader.read();
           if (done) {
-            toast.success("AI responded successfully");
+            toast.success("BuildWithAbdou AI responded successfully");
             setPrompt("");
             setPreviousPrompt(prompt);
             setisAiWorking(false);
@@ -144,13 +144,13 @@ function AskAI({
 
   return (
     <div
-      className={`bg-gray-950 rounded-xl py-2 lg:py-2.5 pl-3.5 lg:pl-4 pr-2 lg:pr-2.5 absolute lg:sticky bottom-3 left-3 lg:bottom-4 lg:left-4 w-[calc(100%-1.5rem)] lg:w-[calc(100%-2rem)] z-10 group ${
+      className={`bg-blue-900 rounded-xl py-2 lg:py-2.5 pl-3.5 lg:pl-4 pr-2 lg:pr-2.5 absolute lg:sticky bottom-3 left-3 lg:bottom-4 lg:left-4 w-[calc(100%-1.5rem)] lg:w-[calc(100%-2rem)] z-10 group ${
         isAiWorking ? "animate-pulse" : ""
       }`}
     >
       {defaultHTML !== html && (
         <button
-          className="bg-white lg:hidden -translate-y-[calc(100%+8px)] absolute left-0 top-0 shadow-md text-gray-950 text-xs font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-gray-100 hover:brightness-150 transition-all duration-100 cursor-pointer"
+          className="bg-teal-50 lg:hidden -translate-y-[calc(100%+8px)] absolute left-0 top-0 shadow-md text-blue-900 text-xs font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-teal-200 hover:bg-teal-100 transition-all duration-100 cursor-pointer"
           onClick={() => setView("preview")}
         >
           <MdPreview className="text-sm" />
@@ -158,13 +158,15 @@ function AskAI({
         </button>
       )}
       <div className="w-full relative flex items-center justify-between">
-        <RiSparkling2Fill className="text-lg lg:text-xl text-gray-500 group-focus-within:text-pink-500" />
+        <RiSparkling2Fill className="text-lg lg:text-xl text-teal-300 group-focus-within:text-teal-500" />
         <input
           type="text"
           disabled={isAiWorking}
-          className="w-full bg-transparent max-lg:text-sm outline-none px-3 text-white placeholder:text-gray-500 font-code"
+          className="w-full bg-transparent max-lg:text-sm outline-none px-3 text-white placeholder:text-teal-300 font-code"
           placeholder={
-            hasAsked ? "What do you want to ask AI next?" : "Ask AI anything..."
+            hasAsked
+              ? "What's next for BuildWithAbdou?"
+              : "Ask Abdou's AI to build something..."
           }
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
@@ -185,7 +187,7 @@ function AskAI({
           />
           <button
             disabled={isAiWorking}
-            className="relative overflow-hidden cursor-pointer flex-none flex items-center justify-center rounded-full text-sm font-semibold size-8 text-center bg-pink-500 hover:bg-pink-400 text-white shadow-sm dark:shadow-highlight/20 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+            className="relative overflow-hidden cursor-pointer flex-none flex items-center justify-center rounded-full text-sm font-semibold size-8 text-center bg-teal-500 hover:bg-teal-400 text-white shadow-sm dark:shadow-highlight/20 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
             onClick={callAi}
           >
             <GrSend className="-translate-x-[1px]" />
@@ -203,15 +205,16 @@ function AskAI({
       ></div>
       <div
         className={classNames(
-          "absolute top-0 -translate-y-[calc(100%+8px)] right-0 z-10 w-80 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-75 overflow-hidden",
+          "absolute top-0 -translate-y-[calc(100%+8px)] right-0 z-10 w-80 bg-teal-50 border border-teal-200 rounded-lg shadow-lg transition-all duration-75 overflow-hidden",
           {
             "opacity-0 pointer-events-none": !open,
           }
         )}
       >
         <Login html={html}>
-          <p className="text-gray-500 text-sm mb-3">
-            You reached the limit of free AI usage. Please login to continue.
+          <p className="text-blue-900 text-sm mb-3">
+            You've reached the free AI usage limit for BuildWithAbdou. Please
+            log in to continue.
           </p>
         </Login>
       </div>

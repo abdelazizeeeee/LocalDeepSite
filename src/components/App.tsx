@@ -1,3 +1,5 @@
+// Main App component for BuildWithAbdou, styled with the blue/teal theme
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useRef, useState } from "react";
 import Editor from "@monaco-editor/react";
 import classNames from "classnames";
@@ -55,10 +57,10 @@ function App() {
       const data = await res.json();
       if (data.html) {
         setHtml(data.html);
-        toast.success("Remix content loaded successfully.");
+        toast.success("BuildWithAbdou remix content loaded successfully.");
       }
     } else {
-      toast.error("Failed to load remix content.");
+      toast.error("Failed to load BuildWithAbdou remix content.");
     }
     const url = new URL(window.location.href);
     url.searchParams.delete("remix");
@@ -141,7 +143,9 @@ function App() {
     // Restore content from storage if available
     if (htmlStorage) {
       removeHtmlStorage();
-      toast.warn("Previous HTML content restored from local storage.");
+      toast.warn(
+        "Previous BuildWithAbdou HTML content restored from local storage."
+      );
     }
 
     // Set initial layout based on window size
@@ -164,15 +168,17 @@ function App() {
   });
 
   return (
-    <div className="h-screen bg-gray-950 font-sans overflow-hidden">
+    <div className="h-screen bg-blue-900 font-sans overflow-hidden">
       <Header
         onReset={() => {
           if (isAiWorking) {
-            toast.warn("Please wait for the AI to finish working.");
+            toast.warn("Please wait for BuildWithAbdou AI to finish working.");
             return;
           }
           if (
-            window.confirm("You're about to reset the editor. Are you sure?")
+            window.confirm(
+              "You're about to reset the BuildWithAbdou editor. Are you sure?"
+            )
           ) {
             setHtml(defaultHTML);
             setError(false);
@@ -207,7 +213,9 @@ function App() {
               if (isAiWorking) {
                 e.preventDefault();
                 e.stopPropagation();
-                toast.warn("Please wait for the AI to finish working.");
+                toast.warn(
+                  "Please wait for BuildWithAbdou AI to finish working."
+                );
               }
             }}
           >
@@ -252,7 +260,7 @@ function App() {
         </div>
         <div
           ref={resizer}
-          className="bg-gray-700 hover:bg-blue-500 w-2 cursor-col-resize h-[calc(100dvh-53px)] max-lg:hidden"
+          className="bg-teal-700 hover:bg-teal-500 w-2 cursor-col-resize h-[calc(100dvh-53px)] max-lg:hidden"
         />
         <Preview
           html={html}

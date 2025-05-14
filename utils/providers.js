@@ -1,3 +1,4 @@
+// Provider constants for BuildWithAbdou, used for AI inference selection
 export const PROVIDERS = {
   "fireworks-ai": {
     name: "Fireworks AI",

@@ -12,9 +12,9 @@ import LoadButton from "../load-button/load-button";
 
 const MsgToast = ({ url }: { url: string }) => (
   <div className="w-full flex items-center justify-center gap-3">
-    Your space is live!
+    Your BuildWithAbdou Space is live!
     <button
-      className="bg-black text-sm block text-white rounded-md px-3 py-1.5 hover:bg-gray-900 cursor-pointer"
+      className="bg-blue-900 text-sm block text-white rounded-md px-3 py-1.5 hover:bg-blue-800 cursor-pointer"
       onClick={() => {
         window.open(url, "_blank");
       }}
@@ -90,7 +90,7 @@ function DeployButton({
         {auth &&
           (auth.isLocalUse ? (
             <>
-              <div className="bg-amber-500/10 border border-amber-10 text-amber-500 font-semibold leading-5 lg:leading-6 py-1 px-5 text-xs lg:text-sm rounded-md mr-4 select-none">
+              <div className="bg-teal-500/10 border border-teal-200 text-teal-500 font-semibold leading-5 lg:leading-6 py-1 px-5 text-xs lg:text-sm rounded-md mr-4 select-none">
                 Local Usage
               </div>
             </>
@@ -107,12 +107,12 @@ function DeployButton({
               >
                 <FaPowerOff className="text-lg text-red-500" />
               </button>
-              <p className="mr-3 text-xs lg:text-sm text-gray-300">
+              <p className="mr-3 text-xs lg:text-sm text-teal-300">
                 <span className="max-lg:hidden">Connected as </span>
                 <a
                   href={`https://huggingface.co/${auth.preferred_username}`}
                   target="_blank"
-                  className="underline hover:text-white"
+                  className="underline hover:text-teal-100"
                 >
                   {auth.preferred_username}
                 </a>
@@ -121,15 +121,17 @@ function DeployButton({
           ))}
         <button
           className={classNames(
-            "relative cursor-pointer flex-none flex items-center justify-center rounded-md text-xs lg:text-sm font-semibold leading-5 lg:leading-6 py-1.5 px-5 hover:bg-pink-400 text-white shadow-sm dark:shadow-highlight/20",
+            "relative cursor-pointer flex-none flex items-center justify-center rounded-md text-xs lg:text-sm font-semibold leading-5 lg:leading-6 py-1.5 px-5 hover:bg-teal-400 text-white shadow-sm dark:shadow-highlight/20",
             {
-              "bg-pink-400": open,
-              "bg-pink-500": !open,
+              "bg-teal-400": open,
+              "bg-teal-500": !open,
             }
           )}
           onClick={() => setOpen(!open)}
         >
-          {path ? "Update Space" : "Deploy to Space"}
+          {path
+            ? "Update BuildWithAbdou Space"
+            : "Deploy to BuildWithAbdou Space"}
         </button>
         <div
           className={classNames(
@@ -142,7 +144,7 @@ function DeployButton({
         ></div>
         <div
           className={classNames(
-            "absolute top-[calc(100%+8px)] right-0 z-10 w-80 bg-white border border-gray-200 rounded-lg shadow-lg transition-all duration-75 overflow-hidden",
+            "absolute top-[calc(100%+8px)] right-0 z-10 w-80 bg-teal-50 border border-teal-200 rounded-lg shadow-lg transition-all duration-75 overflow-hidden",
             {
               "opacity-0 pointer-events-none": !open,
             }
@@ -150,47 +152,52 @@ function DeployButton({
         >
           {!auth ? (
             <Login html={html}>
-              <p className="text-gray-500 text-sm mb-3">
-                Host this project for free and share it with your friends.
+              <p className="text-blue-900 text-sm mb-3">
+                Host your BuildWithAbdou project for free and share it with the
+                world.
               </p>
             </Login>
           ) : (
             <>
-              <header className="flex items-center text-sm px-4 py-2 border-b border-gray-200 gap-2 bg-gray-100 font-semibold text-gray-700">
-                <span className="text-xs bg-pink-500/10 text-pink-500 rounded-full pl-1.5 pr-2.5 py-0.5 flex items-center justify-start gap-1.5">
-                  <img src={SpaceIcon} alt="Space Icon" className="size-4" />
-                  Space
+              <header className="flex items-center text-sm px-4 py-2 border-b border-teal-200 gap-2 bg-blue-50 font-semibold text-blue-900">
+                <span className="text-xs bg-teal-500/10 text-teal-500 rounded-full pl-1.5 pr-2.5 py-0.5 flex items-center justify-start gap-1.5">
+                  <img
+                    src={SpaceIcon}
+                    alt="BuildWithAbdou Space Icon"
+                    className="size-4"
+                  />
+                  BuildWithAbdou Space
                 </span>
                 Configure Deployment
               </header>
               <main className="px-4 pt-3 pb-4 space-y-3">
-                <p className="text-xs text-amber-600 bg-amber-500/10 rounded-md p-2">
+                <p className="text-xs text-teal-600 bg-teal-500/10 rounded-md p-2">
                   {path ? (
                     <span>
-                      Your space is live at{" "}
+                      Your BuildWithAbdou Space is live at{" "}
                       <a
                         href={`https://huggingface.co/spaces/${path}`}
                         target="_blank"
-                        className="underline hover:text-amber-700"
+                        className="underline hover:text-teal-700"
                       >
                         huggingface.co/{path}
                       </a>
                       . You can update it by deploying again.
                     </span>
                   ) : (
-                    "Deploy your project to a space on the Hub. Spaces are a way to share your project with the world."
+                    "Deploy your project to a BuildWithAbdou Space on the Hub. Share your creation with the world!"
                   )}
                 </p>
                 {!path && (
                   <label className="block">
-                    <p className="text-gray-600 text-sm font-medium mb-1.5">
+                    <p className="text-blue-900 text-sm font-medium mb-1.5">
                       Space Title
                     </p>
                     <input
                       type="text"
                       value={config.title}
-                      className="mr-2 border rounded-md px-3 py-1.5 border-gray-300 w-full text-sm"
-                      placeholder="My Awesome Space"
+                      className="mr-2 border rounded-md px-3 py-1.5 border-teal-300 w-full text-sm text-blue-900"
+                      placeholder="My BuildWithAbdou Space"
                       onChange={(e) =>
                         setConfig({ ...config, title: e.target.value })
                       }
@@ -205,7 +212,7 @@ function DeployButton({
                 <div className="pt-2 text-right">
                   <button
                     disabled={error || loading || (!path && !config.title)}
-                    className="relative rounded-full bg-black px-5 py-2 text-white font-semibold text-xs hover:bg-black/90 transition-all duration-100 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
+                    className="relative rounded-full bg-blue-900 px-5 py-2 text-white font-semibold text-xs hover:bg-blue-800 transition-all duration-100 disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed disabled:hover:bg-gray-300"
                     onClick={createSpace}
                   >
                     {path ? "Update Space" : "Create Space"}
