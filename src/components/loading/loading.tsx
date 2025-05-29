@@ -1,8 +1,9 @@
+// Loading spinner for BuildWithAbdou, styled with the blue/teal theme
 function Loading() {
   return (
-    <div className="absolute left-0 top-0 h-full w-full flex items-center justify-center bg-white/30 z-20">
+    <div className="absolute left-0 top-0 h-full w-full flex items-center justify-center bg-teal-500/30 z-20">
       <svg
-        className="size-5 animate-spin text-white"
+        className="size-5 animate-spin text-teal-300"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

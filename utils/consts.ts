@@ -1,7 +1,8 @@
+// Default HTML content for BuildWithAbdou editor, styled with the blue/teal theme
 export const defaultHTML = `<!DOCTYPE html>
 <html>
   <head>
-    <title>My app</title>
+    <title>BuildWithAbdou</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8">
     <style>
@@ -13,6 +14,7 @@ export const defaultHTML = `<!DOCTYPE html>
         height: 100dvh;
         font-family: "Arial", sans-serif;
         text-align: center;
+        background-color: #1e3a8a; /* blue-900 */
       }
       .arrow {
         position: absolute;
@@ -23,9 +25,10 @@ export const defaultHTML = `<!DOCTYPE html>
       }
       h1 {
         font-size: 50px;
+        color: #ffffff; /* white */
       }
       h1 span {
-        color: #acacac;
+        color: #2dd4bf; /* teal-300 */
         font-size: 32px;
       }
     </style>
@@ -33,9 +36,9 @@ export const defaultHTML = `<!DOCTYPE html>
   <body>
     <h1>
       <span>I'm ready to work,</span><br />
-      Ask me anything.
+      Ask BuildWithAbdou anything.
     </h1>
-    <img src="https://enzostvs-deepsite.hf.space/arrow.svg" class="arrow" />
+    <img src="https://enzostvs-buildwithabdou.hf.space/arrow.svg" class="arrow" alt="BuildWithAbdou Arrow" />
     <script></script>
   </body>
 </html>
