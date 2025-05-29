@@ -52,7 +52,10 @@ function AskAI({
     let lastRenderTime = 0;
     try {
       onNewPrompt(prompt);
-      const request = await fetch("/api/ask-ai", {
+      // Use localhost:3000 during development, or relative path in production
+      const request = await fetch(process.env.NODE_ENV === "development" 
+        ? "http://localhost:3000/api/ask-ai" 
+        : "/api/ask-ai", {
         method: "POST",
         body: JSON.stringify({
           prompt,

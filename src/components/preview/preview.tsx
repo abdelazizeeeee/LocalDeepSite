@@ -16,7 +16,7 @@ function Preview({
   html: string;
   isResizing: boolean;
   isAiWorking: boolean;
-  setView: React.Dispatch<React.SetStateAction<"editor" | "preview">>;
+  setView: React.Dispatch<React.SetStateAction<"editor" | "preview">>;  
   ref: React.RefObject<HTMLDivElement | null>;
 }) {
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
@@ -35,7 +35,7 @@ function Preview({
   return (
     <div
       ref={ref}
-      className="w-full border-l border-teal-700 bg-white h-[calc(100dvh-49px)] lg:h-[calc(100dvh-53px)] relative"
+      className="w-full border-l border-primary-700/30 bg-white h-[calc(100dvh-49px)] lg:h-[calc(100dvh-53px)] relative shadow-inner"
       onClick={(e) => {
         if (isAiWorking) {
           e.preventDefault();
@@ -44,41 +44,43 @@ function Preview({
         }
       }}
     >
+      <div className="absolute top-0 left-0 right-0 bg-gray-50 border-b border-gray-200 flex items-center justify-between px-3 py-2 z-10">
+        <button
+          onClick={handleRefreshIframe}
+          className="text-primary-600 hover:text-primary-800 p-1 rounded-full hover:bg-primary-50 transition-colors duration-200"
+          title="Refresh Preview"
+        >
+          <TbReload className="text-lg" />
+        </button>
+        
+        <button
+          onClick={() => setView("editor")}
+          className="md:hidden flex items-center gap-1 text-xs text-primary-600 bg-primary-50 px-2 py-1 rounded-md hover:bg-primary-100 transition-colors duration-200"
+        >
+          <FaLaptopCode />
+          <span>Editor</span>
+        </button>
+      </div>
+      
       <iframe
         ref={iframeRef}
         title="output"
-        className={classNames("w-full h-full select-none", {
+        className={classNames("w-full h-full select-none mt-10", {
           "pointer-events-none": isResizing || isAiWorking,
+          "opacity-50": isAiWorking,
         })}
-        srcDoc={html}
+        srcDoc={html || defaultHTML}
+        sandbox="allow-scripts allow-modals"
       />
-      <div className="flex items-center justify-start gap-3 absolute bottom-3 lg:bottom-5 max-lg:left-3 lg:right-5">
-        <button
-          className="lg:hidden bg-blue-900 shadow-md text-white text-xs lg:text-sm font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-teal-700 hover:bg-teal-500 transition-all duration-100 cursor-pointer"
-          onClick={() => setView("editor")}
-        >
-          <FaLaptopCode className="text-sm" />
-          Hide preview
-        </button>
-        {html === defaultHTML && (
-          <a
-            href="https://huggingface.co/spaces/victor/buildwithabdou-gallery"
-            target="_blank"
-            className="bg-teal-50 text-blue-900 text-xs lg:text-sm font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-teal-200 hover:bg-teal-100 transition-all duration-100 cursor-pointer"
-          >
-            🖼️ <span>BuildWithAbdou Gallery</span>
-          </a>
-        )}
-        {!isAiWorking && (
-          <button
-            className="bg-white lg:bg-blue-900 shadow-md text-blue-900 lg:text-white text-xs lg:text-sm font-medium py-2 px-3 lg:px-4 rounded-lg flex items-center gap-2 border border-teal-200 lg:border-teal-700 hover:bg-teal-100 lg:hover:bg-teal-500 transition-all duration-100 cursor-pointer"
-            onClick={handleRefreshIframe}
-          >
-            <TbReload className="text-sm" />
-            Refresh Preview
-          </button>
-        )}
-      </div>
+      
+      {isAiWorking && (
+        <div className="absolute inset-0 flex items-center justify-center bg-dark-900/20 backdrop-blur-sm z-20">
+          <div className="bg-white p-4 rounded-lg shadow-lg text-center">
+            <div className="animate-spin h-8 w-8 border-4 border-primary-500 border-t-transparent rounded-full mx-auto mb-3"></div>
+            <p className="text-dark-600 font-medium">BuildWithAbdou AI is working...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

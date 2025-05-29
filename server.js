@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 import {
   createRepo,
   uploadFiles,
@@ -27,11 +28,17 @@ const ipAddresses = new Map();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.APP_PORT || 3000;
+const PORT = 3000;
 const REDIRECT_URI =
   process.env.REDIRECT_URI || `http://localhost:${PORT}/auth/login`;
 const MODEL_ID = "deepseek-ai/DeepSeek-V3-0324";
 const MAX_REQUESTS_PER_IP = 2;
+
+// Add CORS middleware
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  credentials: true
+}));
 
 app.use(cookieParser());
 app.use(bodyParser.json());
